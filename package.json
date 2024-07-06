@@ -1,0 +1,22 @@
+{
+  "name": "photobook",
+  "version": "0.1.0",
+  "description": "See photos from your friends",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "tailwind": "npx tailwindcss -i ./public/styles/tailwind.config.css -o ./public/styles/tailwind.css --watch"
+  },
+  "author": "Hamza Nasher-Alneam",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^3.1.4",
+    "tailwindcss": "^3.4.4"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  }
+}

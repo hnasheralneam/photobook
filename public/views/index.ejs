@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="styles/tailwind.css">
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <title>Photobook</title>
+</head>
+<body>
+    <div class="page">
+        <!-- Navigation -->
+        <div class="bg-neutral-50 h-[100vh] sticky top-0">
+            <ul class="p-4">
+                <% let menuItems = ["Home", "Notifications", "Friends", "Settings"]; %>
+                <% for (let item of menuItems) { %>
+                    <li class="p-4 my-2 bg-neutral-200 rounded-lg"><%= item %></li>
+                <% } %>
+            </ul>
+        </div>
+        <!-- Main page content -->
+        <div class="content text-center h-[200vh]">
+            <h1 class="mt-8 mb-2 text-3xl font-semibold">Welcome to Photobook</h1>
+            <p>See what your friends are doing</p>
+            <div class="posts">
+                <% let posts = [{poster: {name: "hamza", id: "uuid"}, message: "lookit my kitties!", images: [["https://cdn.pixabay.com/photo/2024/02/28/07/42/european-shorthair-8601492_1280.jpg", "cat"], ["https://images.unsplash.com/photo-1608848461950-0fe51dfc41cb?fm=jpg&w=3000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D", "cat"]], time: new Date(), emojis: {likes: 6, hearts: 2}, comments: [{poster: {name: "asiya", id: "uuid"}, message: "i liked the photo"}]}]; %>
+                <% for (let post of posts) { %>
+                    <div class="post py-4 px-6 text-left max-w-[700px] mx-auto my-4 shadow-sm bg-neutral-100 rounded-lg">
+                        <p class="text-xl"><%= post.message %></p>
+                        <i><%= post.poster.name %></i>
+                        <div class="images h-[600px] w-[600px] mx-auto my-2 bg-white rounded-lg overflow-hidden relative">
+                            <% for (let image of post.images) { %>
+                                <div class="img-wrapper h-full w-full inline-flex items-center justify-center">
+                                    <button class="bg-neutral-100 hover:bg-neutral-200 rounded-full w-10 h-10" onclick="scrollToImage(this, 'last')"><</button>
+                                    <img class="rounded-lg" src="<%= image[0] %>" alt="<%= image[1] %>">
+                                    <button class="bg-neutral-100 hover:bg-neutral-200 rounded-full w-10 h-10" onclick="scrollToImage(this, 'next')">></button>
+                                </div>
+                            <% } %>
+                        </div>
+                        <i class="float-right">Posted on <%= post.time.toLocaleString() %></i>
+                        <br>
+                        <div class="comments m-2 p-4 bg-white rounded-lg">
+                            <p>Comments</p>
+                            <div class="comment my-2 p-2 bg-neutral-100 rounded-lg">
+                                <% for (let comment of post.comments) { %>
+                                    <p ><%= comment.message %></p>
+                                    <i><%= comment.poster.name %></i>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../scripts/main.js"></script>
+</html>
